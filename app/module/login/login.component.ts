@@ -11,7 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
 
-  mensagemErro;
+  mensagemErro: any;
   login = { email:'', password:'' }
 
 
