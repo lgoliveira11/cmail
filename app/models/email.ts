@@ -1,21 +1,23 @@
-export class Email
-{
-    destinatario: string = '';
-    assunto: string = ''; 
-    conteudo: string = '';
-    dataDeEnvio: string = '';
+export class	Email	{
+	destinatario	=	'';
+	assunto	=	'';
+	conteudo	=	'';
+	dataDeEnvio	=	'';
+	id = '';
 
-    constructor( {destinatario, assunto, conteudo, dataDeEnvio}:
-        {destinatario: string, assunto: string, conteudo: string, dataDeEnvio: string}
-        ){
-            this.destinatario = destinatario;
-            this.assunto = assunto;
-            this.conteudo = conteudo;
-            this.dataDeEnvio = dataDeEnvio;
+    constructor	(
+			{ destinatario,	assunto, conteudo, dataDeEnvio, id}:
+					{	destinatario: string, assunto: string, conteudo: string, 
+						dataDeEnvio: string, id: string	}
+			){
+			this.destinatario	=	destinatario;
+			this.assunto	=	assunto;
+			this.conteudo	=	conteudo;
+			this.dataDeEnvio	=	dataDeEnvio;
+			this.id = id;
     }
-
-    get introducaDoConteudo()
-    {
-        return this.conteudo.substr(0,140) + '...';
-    }
+    
+    get	introducaoDoConteudo()	{
+			return this.conteudo.substr(0,	140) + '...'
+	}
 }

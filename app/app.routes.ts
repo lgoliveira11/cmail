@@ -22,7 +22,7 @@ const rotas: Routes = [
         loadChildren: () => import('./module/login/login.module').then(m=> m.LoginModule)
     },
     { 
-        path: '', pathMatch: 'full', redirectTo: ''
+        path: '', pathMatch: 'full', redirectTo: 'login'
     },
     {
          path: '**', pathMatch: 'full', redirectTo: 'login'

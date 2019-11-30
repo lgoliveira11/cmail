@@ -1,4 +1,6 @@
 import { Component } from "@angular/core";
+import { PageDataService } from 'src/app/services/page.service';
+import { HeaderDataService } from 'src/app/services/header.service';
 
 @Component({
     selector: 'cmail-header',
@@ -9,6 +11,18 @@ import { Component } from "@angular/core";
     ]
 })
 export class HeaderComponent{
+
+    tituloDaPagina = 'Programa Cmail'
+    
+    constructor(private pageService: PageDataService, 
+        private headerService: HeaderDataService){
+
+        this.pageService
+            .titulo
+            .subscribe(novoTitulo => this.tituloDaPagina = novoTitulo);
+    }
+    
+    
     private _isMenuOpen = false
 
     get isMenuOpen(){ 
@@ -17,6 +31,10 @@ export class HeaderComponent{
 
     toggleMenu()    {
         this._isMenuOpen = !this._isMenuOpen
+    }
+
+    handleBuscaChanges({ target }){
+        this.headerService.atualizarTermoDeFiltro(target.value);
     }
 }
 

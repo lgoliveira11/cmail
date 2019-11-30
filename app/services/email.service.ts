@@ -26,15 +26,44 @@ export class EmailService {
         .post(this.api, emailParaApi, {headers: this.cabecalho})
         .pipe<Email>(
             map(
-                (emailParaApi: any) => {
-                    return new Email({
-                        destinatario: emailParaApi.to,
-                        assunto: emailParaApi.subject,
-                        conteudo: emailParaApi.content,
-                        dataDeEnvio: emailParaApi.dataDeEnvio
-                    })
+                (emailApi:	any)	=>	{
+                    return new	Email({
+                                destinatario:	emailApi.to,
+                                assunto:	emailApi.subject,
+                                conteudo:	emailApi.content,
+                                dataDeEnvio:	emailApi.created_at,
+                                id: emailApi.id
+                        })
+                    }
+            )
+        )
+    }
+
+    listar(){
+        return this.http
+            .get(this.api,	{	headers:	this.cabecalho	})
+            .pipe<Email[]>(
+                map(
+                    (response:	any[])	=>	{
+                        return	response
+                        .map(
+                                emailApi	=>	new	Email({
+                                        destinatario:	emailApi.to,
+                                        assunto:	emailApi.subject,
+                                        conteudo:	emailApi.content,
+                                        dataDeEnvio:	emailApi.created_at,
+                                        id: emailApi.id
+                                })
+                            )
                 }
             )
         )
     }
+
+    deletar(id){
+        return this
+            .http
+            .delete(`${this.api}/${id}`, { headers: this.cabecalho});
+    }
 }
+

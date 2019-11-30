@@ -2,20 +2,26 @@
     <cmail-header></cmail-header>
     <main class="mdl-layout__content">
       <div class="page-content">
-  
-        <div class="mdl-grid">
+        <p>Filtro: {{termoParaFiltro}}</p>
+        <div	class="mdl-grid">
           <ul>
-            <li *ngFor="let email of emailList">
-              <cmail-list-item
-                [destinatario] = "email.destinatario"
-                [assunto] = "email.assunto"
-                [introducaoDoConteudo] = "email.introducaoDoConteudo"
-                [dataDeEnvio] = "email.dataDeEnvio"
-              >
-              </cmail-list-item>
-             </li>
+              <!--
+              <li	*ngFor="let	email	of emailList | filtroPorAssunto:filtroPorAssunto">
+              <li	*ngFor="let	email	of emailList">
+              <li *ngFor="let	email	of filtrarEmailsPorAssunto()">
+               -->
+               <li	*ngFor="let	email	of emailList | filtroPorAssunto:termoParaFiltro">
+                  <cmail-list-item
+                    [destinatario]="email.destinatario"
+                    [assunto]="email.assunto"
+                    [introducaoDoConteudo]="email.introducaoDoConteudo"
+                    [dataDeEnvio]="email.dataDeEnvio"
+                    (eventoVaiRemover)="handleRemoveEmail($event, email.id)"
+                ></cmail-list-item>
+              </li>
           </ul>
         </div>
+        
         <div class="mdl-grid">
           <!-- Floating Multiline Textfield -->
           <button class="globalFab tooltip btn mdl-button mdl-js-button mdl-button--fab mdl-button--colored" role="tooltip"
@@ -85,3 +91,5 @@
       </div>
     </main>
   </div>
+
+
